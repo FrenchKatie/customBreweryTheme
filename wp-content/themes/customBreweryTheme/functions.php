@@ -76,3 +76,7 @@
         ));
     }
     add_action('widgets_init', 'register_my_sidebars');
+
+
+//ADDING CUSTOMISEABLE TEXT AND COLOURS
+    require get_parent_theme_file_path('./addons/custom_customiser.php');

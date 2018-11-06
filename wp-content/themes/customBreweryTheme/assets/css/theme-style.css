@@ -12,19 +12,33 @@
     /* text-transform: uppercase; */
 }
 nav{
-    border-bottom: 1px solid black;
+    /* border-bottom: 1px solid black; */
 }
 #frontSidebar{
     width: 100%;
 
 }
+/*
 #text-3{
-    /* width: 50%; */
-    /* margin-left: 25vw; */
     text-align: center;
-    /* margin: 5em 15vw; */
 }
 
 .widgetTitle{
     margin-bottom: 1em;
+} */
+.home-intro-title-text{
+        /* padding: 2em 0 1em 0; */
+}
+
+.home-intro-text{
+    width: 60%;
+    margin: auto;
+    /* padding-bottom: 2em; */
+}
+
+.home-feature-image{
+    /* padding: 1em; */
+}
+.footer-text{
+    border-top: 1px solid black;
 }
