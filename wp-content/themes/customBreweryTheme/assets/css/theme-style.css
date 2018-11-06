@@ -14,3 +14,17 @@
 nav{
     border-bottom: 1px solid black;
 }
+#frontSidebar{
+    width: 100%;
+
+}
+#text-3{
+    /* width: 50%; */
+    /* margin-left: 25vw; */
+    text-align: center;
+    /* margin: 5em 15vw; */
+}
+
+.widgetTitle{
+    margin-bottom: 1em;
+}

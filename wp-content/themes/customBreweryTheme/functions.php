@@ -39,30 +39,6 @@
 
 
 //ADDING A CUSTOM HEADER IMAGE
-    // register_default_headers(array(
-    //     'banner' => array(
-    //         'url' => get_template_directory_uri() . '/assets/images/default.jpg',
-    //         'thumbnail_url' => get_template_directory_uri() . '/assets/images/default.jpg',
-    //         'description' => 'Defualt banner image for front page',
-    //     )
-    // ));
-    //
-    // function add_Custom_Header(){
-    //     $defaults = array(
-    //     	'default-image'          => get_template_directory_uri() . '/assets/images/default.jpg', //gets the path to where our template folder is
-    //     	'width'                  => 1280,
-    //     	'height'                 => 720,
-    //     	'flex-height'            => false,
-    //     	'flex-width'             => false,
-    //     	'uploads'                => true,
-    //     	'random-default'         => false,
-    //     	'header-text'            => true,
-    //     	'default-text-color'     => ''
-    //     );
-    //     add_theme_support( 'custom-header', $defaults );
-    // }
-    // add_action('init', 'add_Custom_Header');
-
     register_default_headers( array(
         'defaultImage' => array(
             'url'           => get_template_directory_uri() . '/assets/images/default.jpg',
@@ -77,3 +53,26 @@
         'header-text'            => false
     );
     add_theme_support( 'custom-header', $defaultImage );
+
+
+//ADDING WIDGETS
+    function wpsites_before_post_widget( $content ) {
+    	if ( is_singular( array( 'post', 'page' ) ) && is_active_sidebar( 'before-post' ) && is_main_query() ) {
+    		dynamic_sidebar('before-post');
+    	}
+    	return $content;
+    }
+    add_filter( 'the_content', 'wpsites_before_post_widget' );
+
+    function register_my_sidebars(){
+        register_sidebar(array(
+            'id' => 'front_page_sidebar',
+            'name' => 'Front Page Sidebar',
+            'description' => 'The sidebar which appears on the front page',
+            'before_widget' => '<div id="%1$s" class="widget customWidget %2$s">',
+            "after_widget" => '</div>',
+            'before_title' => '<h3 class="widgetTitle">',
+            'after_title' => '</h3>'
+        ));
+    }
+    add_action('widgets_init', 'register_my_sidebars');
