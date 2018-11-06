@@ -1,0 +1,16 @@
+#front-page-banner{
+    height: 60vh;
+    background-size: cover !important;
+    background-repeat: no-repeat;
+    background-position: center bottom;
+
+}
+.nav-link{
+    color: black;
+    font-family: 'Noto Sans', sans-serif;
+    /* font-family: 'Fjalla One', sans-serif; */
+    /* text-transform: uppercase; */
+}
+nav{
+    border-bottom: 1px solid black;
+}

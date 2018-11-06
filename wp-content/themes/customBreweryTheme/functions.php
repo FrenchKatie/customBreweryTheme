@@ -1,5 +1,6 @@
 <?php
 
+
 //SETTING UP BOOTSTRAP FILES
     function addCustomThemeStyles(){
         // Style
@@ -13,8 +14,8 @@
     }
     add_action('wp_enqueue_scripts', 'addCustomThemeStyles');
 
-//ADDING CUSTOM MENUS
 
+//ADDING CUSTOM MENUS
     function addCustomMenus(){
         add_theme_support('menus');
         register_nav_menu('header_nav', 'This is the navigation which appears at the top of the page');
@@ -23,3 +24,56 @@
     add_action('init', 'addCustomMenus');
 
     require_once get_template_directory() . '/class-wp-bootstrap-navwalker.php';
+
+
+//ADDING A CUSTOM LOGO
+    function addCustomLogo(){
+        add_theme_support('custom-logo', array(
+            'height' => 100,
+            'width' => 300,
+            'flex-width' => true,
+            'flex-height' => true
+        ));
+    }
+    add_action('init', 'addCustomLogo');
+
+
+//ADDING A CUSTOM HEADER IMAGE
+    // register_default_headers(array(
+    //     'banner' => array(
+    //         'url' => get_template_directory_uri() . '/assets/images/default.jpg',
+    //         'thumbnail_url' => get_template_directory_uri() . '/assets/images/default.jpg',
+    //         'description' => 'Defualt banner image for front page',
+    //     )
+    // ));
+    //
+    // function add_Custom_Header(){
+    //     $defaults = array(
+    //     	'default-image'          => get_template_directory_uri() . '/assets/images/default.jpg', //gets the path to where our template folder is
+    //     	'width'                  => 1280,
+    //     	'height'                 => 720,
+    //     	'flex-height'            => false,
+    //     	'flex-width'             => false,
+    //     	'uploads'                => true,
+    //     	'random-default'         => false,
+    //     	'header-text'            => true,
+    //     	'default-text-color'     => ''
+    //     );
+    //     add_theme_support( 'custom-header', $defaults );
+    // }
+    // add_action('init', 'add_Custom_Header');
+
+    register_default_headers( array(
+        'defaultImage' => array(
+            'url'           => get_template_directory_uri() . '/assets/images/default.jpg',
+            'thumbnail_url' => get_template_directory_uri() . '/assets/images/default.jpg',
+            'description'   => __( 'defaultImage', 'customBreweryTheme' )
+        )
+    ) );
+    $defaultImage = array(
+    	'default-image'          => get_template_directory_uri() . '/assets/images/default.jpg',
+    	'width'                  => 1280,
+    	'height'                 => 720,
+        'header-text'            => false
+    );
+    add_theme_support( 'custom-header', $defaultImage );
