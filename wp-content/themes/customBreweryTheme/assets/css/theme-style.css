@@ -42,3 +42,7 @@ nav{
 .footer-text{
     border-top: 1px solid black;
 }
+
+#menu-posts{
+    display: none !important;
+}

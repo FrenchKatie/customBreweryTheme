@@ -80,3 +80,38 @@
 
 //ADDING CUSTOMISEABLE TEXT AND COLOURS
     require get_parent_theme_file_path('./addons/custom_customiser.php');
+
+
+//ADDING POST FORMATS
+    add_theme_support( 'post-formats', array( 'aside', 'gallery', 'image', 'video' , 'link') );
+
+
+//ADDING CUSTOM PRODUCT POST TYPE
+ function add_product_post_type(){
+    $labels = array(
+        'name' => _x('Product', 'post type name', 'customBreweryTheme'),
+        'singular_name' => _x('Product', 'post types singluar name', 'customBreweryTheme'),
+        'add_new_item' => _x('Add New Product', 'adding new product', 'customBreweryTheme')
+    );
+
+    $args = array(
+        'labels' => $labels,
+        'description' => 'a post type for the products',
+        'public' => true,
+        'hierarchical' => true,
+        'exclude_from_search' => false,
+        'show_ui' => true,
+        'show_in_menu' => true,
+        'show_in_nav_menus' => false,
+        'menu_position' => 20,
+        'menu_icon' => 'dashicons-screenoptions',
+        'supports' => array(
+            'title',
+            'thumbnail'
+        ),
+        'query_var' => true
+    );
+
+    register_post_type('product', $args);
+}
+ add_action('init', 'add_product_post_type');
