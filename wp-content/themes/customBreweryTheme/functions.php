@@ -87,31 +87,42 @@
 
 
 //ADDING CUSTOM PRODUCT POST TYPE
- function add_product_post_type(){
-    $labels = array(
-        'name' => _x('Product', 'post type name', 'customBreweryTheme'),
-        'singular_name' => _x('Product', 'post types singluar name', 'customBreweryTheme'),
-        'add_new_item' => _x('Add New Product', 'adding new product', 'customBreweryTheme')
-    );
+     function add_product_post_type(){
+        $labels = array(
+            'name' => _x('Products', 'post type name', 'customBreweryTheme'),
+            'singular_name' => _x('Products', 'post types singluar name', 'customBreweryTheme'),
+            'add_new_item' => _x('Add New Product', 'adding new product', 'customBreweryTheme')
+        );
 
-    $args = array(
-        'labels' => $labels,
-        'description' => 'a post type for the products',
-        'public' => true,
-        'hierarchical' => true,
-        'exclude_from_search' => false,
-        'show_ui' => true,
-        'show_in_menu' => true,
-        'show_in_nav_menus' => false,
-        'menu_position' => 20,
-        'menu_icon' => 'dashicons-screenoptions',
-        'supports' => array(
-            'title',
-            'thumbnail'
-        ),
-        'query_var' => true
-    );
+        $args = array(
+            'labels' => $labels,
+            'description' => 'a post type for the products',
+            'public' => true,
+            'hierarchical' => true,
+            'exclude_from_search' => false,
+            'show_ui' => true,
+            'show_in_menu' => true,
+            'show_in_nav_menus' => false,
+            'menu_position' => 20,
+            'menu_icon' => 'dashicons-screenoptions',
+            'supports' => array(
+                'title',
+                'thumbnail'
+            ),
+            'query_var' => true,
+            'supports' => array( 'title', 'editor', 'thumbnail')
+        );
 
-    register_post_type('product', $args);
-}
- add_action('init', 'add_product_post_type');
+        register_post_type('product', $args);
+        add_theme_support( 'post-thumbnails' );
+        // post_type_supports( $allProducts, 'title', 'comments', 'author', 'thumbnail' );
+        // post_type_supports( $post_type, $supports );
+    }
+     add_action('init', 'add_product_post_type');
+
+
+//GETTING THE EXCERPT
+    function new_excerpt_more( $more ) {
+    	return ' <a class="read-more" href="'. get_permalink( get_the_ID() ) . '">' . __('<br>Read More', 'your-text-domain') . '</a>';
+    }
+    add_filter( 'excerpt_more', 'new_excerpt_more' );
